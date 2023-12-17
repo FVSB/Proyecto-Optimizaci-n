@@ -1,0 +1,75 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[spanish]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{tabularx,algorithmic}
+
+\newenvironment{resultado}[1]
+{
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Método & Número de Iteraciones &  Se encuentra en una región numericamente factible \\
+    
+}
+{
+    \hline
+    
+    \end{tabular}
+    \end{center}
+}
+
+
+
+
+\title{Proyecto de  Modelos de Optimización }
+\author{Leonardo Amaro, Alfredo Montero, Antuán Montes de Oca, Fracisco Vicente Suárez}
+\date{}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Introducción}
+En este proyecto, presentamos el análisis de problemas de optimización no lineal. Para ello, hemos seleccionado ciertos métodos basándonos en fundamentos sólidos. Nuestra elección se justifica en la eficacia de estos métodos para resolver problemas complejos de optimización.
+\subsection{Algoritmos Seleccionados:}
+\subsubsection{Sequential Least Squares Programming:}
+El método Sequential Least Squares Programming (SLSQP) es un método de optimización no lineal versátil y eficiente que se puede aplicar a una amplia gama de problemas, tanto con restricciones como sin restricciones. Es una buena opción para problemas que requieren una combinación de eficiencia y versatilidad. Entre sus bondades se encuentran su versatilidad, eficiencia y facilidad de implementación. Sin embargo, también tiene algunas limitaciones, como no ser tan robusto como otros métodos y requerir la evaluación de la función objetivo y sus derivadas en cada paso del algoritmo de optimización. Algunos casos de uso típicos del SLSQP incluyen la optimización de funciones no lineales con restricciones, la resolución de problemas de programación lineal con restricciones no lineales y la optimización de problemas de ingeniería.
+
+\subsubsection{L-BFGS-B :}
+
+
+L-BFGS-B es un método de optimización no lineal que funciona bien en problemas con restricciones. Es una versión modificada del método BFGS que permite incluir restricciones en las variables. Las principales ventajas de este método son que es rápido, eficiente y robusto. El método funciona construyendo una matriz hessiana inversa aproximada, que se utiliza para calcular la dirección de descenso de la función objetivo. La matriz hessiana inversa aproximada se construye utilizando información de la función objetivo y de los puntos de búsqueda anteriores. El proceso se repite hasta que la función objetivo converge a un mínimo. L-BFGS-B es adecuado para problemas no lineales porque no requiere información sobre las derivadas de la función objetivo. También es robusto y eficiente, lo que significa que puede funcionar bien en una amplia gama de problemas.
+
+
+\subsubsection{Nelder-Mead:}
+
+El método Nelder-Mead es un método de optimización no lineal sin restricciones que utiliza una búsqueda por coordenadas para encontrar el mínimo de una función. Las principales ventajas de este método son que es simple de implementar y puede converger rápidamente a una solución óptima local. El método funciona construyendo un simplex, que es una figura geométrica con N+1 vértices. El simplex se mueve a través del espacio de búsqueda mediante cuatro operaciones básicas: reflexión, expansión, contracción y shrinking. La reflexión mueve el simplex a través del punto más alejado de la función objetivo. La expansión mueve el simplex aún más lejos de este punto. La contracción mueve el simplex hacia el punto más cercano a la función objetivo. El shrinking contrae uniformemente el simplex. El proceso se repite hasta que el simplex converge a un punto que se considera una solución óptima local. Este método es adecuado para problemas no lineales porque no requiere información sobre las derivadas de la función objetivo; lo cual corresponde con el tipo de problemas que estamos analizando. También es robusto y eficiente, lo que significa que puede funcionar bien en una amplia gama de problemas.
+
+
+
+\subsection{Particularidades comunes de los problemas:}
+\begin{enumerate}
+    \item Problemas de Optimización no lineales.
+    \item Las restricciones son lineales.
+ \item Las restricciones son únicamente con respecto al valor máximo y/o mínimo de cada variable.
+\end{enumerate}
+
+
+\section{Resultados:}
+\subsection{Ejercicio 21:}
+\subsubsection{Para N=10}
+
+
+\end{document}

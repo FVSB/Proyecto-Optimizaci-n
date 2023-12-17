@@ -70,7 +70,7 @@ class BrentFunction:
         return self.__brent_function(x)
     # Definir la función Brent
     def __brent_function(self,x):
-     return (x[0] + 10)**2 + (x[1] + 10)**2 + np.exp(-(x[0]**2) - (x[1]**2))
+     return ((x[0] + 10)**2) + ((x[1] + 10)**2) + (np.exp(-(x[0]**2) - (x[1]**2)))
  
  
  
