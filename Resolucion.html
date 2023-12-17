@@ -7514,6 +7514,67 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a0fdda3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Proponemos para cada problema comparar una relajación de este eliminando las restricciones de cada uno y resolviendo este por algoritmos para este nuevo tipo de problema</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24e42a4e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">helper</span> <span class="k">as</span> <span class="nn">hp</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94c205c3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>def optimize(f,x0,bounds,method_name):
+start_time = time.perf_counter()
+res =  optimize(fun=f, x0=x0, bounds=bounds, method=method_name,options={'gtol': 1e-8}) # call SLSQP
+end_time = time.perf_counter()
+execution_time_ms = int((end_time - start_time) * 1000)
+return get_data(res, execution_time_ms, method_name),method_name</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=595fc40f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">TrustRegion</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">:</span><span class="n">hp</span><span class="o">.</span><span class="n">optimizeFun</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="s1">'trust-constr'</span><span class="p">)</span>
+<span class="n">SLSQP</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">optimizeFun</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="s1">'SLSQP'</span><span class="p">)</span>
+<span class="n">COBYLA</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">optimizeFun</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="s1">'COBYLA'</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9115031848ec8c8c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7614,23 +7675,17 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e57c68db83eeaaba">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a2e70085">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Trust-Constr: es un algoritmo de optimización no lineal que se basa en el concepto de región de confianza. Una región de confianza es un conjunto de puntos que se cree que están cerca de la solución óptima del problema. El método de trust-constr comienza en un punto inicial y luego busca el punto en la región de confianza que minimiza la función objetivo.</p>
-<p>Para explicar por qué el método de trust-constr funciona con ciertos problemas de optimización, es importante comprender el concepto de función de confianza. Una función de confianza es una función que se utiliza para estimar la disminución de la función objetivo en una dirección dada. El método de trust-constr utiliza la función de confianza para determinar la dirección en la que debe moverse el punto actual para encontrar un punto con un valor de función inferior.</p>
-<p>En el caso de los problemas de optimización no lineales sin restricciones, el método de trust-constr funciona bien porque la función de confianza puede estimar con precisión la disminución de la función objetivo en una dirección dada. Esto se debe a que la función de confianza se basa en información de la función objetivo en el punto actual.</p>
-<p>Sin embargo, en el caso de los problemas de optimización no lineales con restricciones, el método de trust-constr puede funcionar mal porque la función de confianza puede no ser capaz de estimar con precisión la disminución de la función objetivo en una dirección dada. Esto se debe a que la función de confianza se basa en información de la función objetivo en el punto actual, pero no tiene en cuenta las restricciones del problema.</p>
-<p>Para mejorar la precisión de la función de confianza en el caso de los problemas de optimización no lineales con restricciones, el método de trust-constr puede utilizar un procedimiento llamado relajación. La relajación consiste en relajar las restricciones del problema para que se convierta en un problema no restringido. Luego, el método de trust-constr se utiliza para resolver el problema no restringido. Finalmente, las restricciones se vuelven a aplicar a la solución del problema no restringido.</p>
-<p>El procedimiento de relajación puede mejorar la precisión de la función de confianza porque permite al método de trust-constr utilizar información de la función objetivo en un conjunto de puntos más amplio. Esto es importante porque la función de confianza es más precisa cuando se basa en información de un conjunto de puntos más amplio.</p>
-<p>En general, el método de trust-constr es un algoritmo de optimización no lineal eficaz que puede utilizarse para resolver una amplia variedad de problemas. Sin embargo, en el caso de los problemas de optimización no lineales con restricciones, el método de trust-constr puede funcionar mal si la función de confianza no es capaz de estimar con precisión la disminución de la función objetivo en una dirección dada. Para mejorar la precisión de la función de confianza, el método de trust-constr puede utilizar un procedimiento llamado relajación.</p>
+<h4 id="Definir-$G(x_i)$">Definir $G(x_i)$<a class="anchor-link" href="#Definir-$G(x_i)$">¶</a></h4>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ee8c7ec6e5b902dd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=264889a1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7638,11 +7693,60 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">xi</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">):</span> <span class="c1"># objective function</span>
+  
+  <span class="n">g1</span><span class="o">=</span><span class="n">gi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">g2</span><span class="o">=</span><span class="n">gi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="n">g31</span><span class="o">=-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">g32</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">g3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">g31</span><span class="o">-</span><span class="n">g32</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+  <span class="n">g</span> <span class="o">=</span>   <span class="n">g1</span><span class="o">-</span> <span class="n">g2</span><span class="o">-</span><span class="n">g3</span>
+  <span class="k">return</span> <span class="n">g</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9645445d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Definir-$F(x)$">Definir $F(x)$<a class="anchor-link" href="#Definir-$F(x)$">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b0ea3e46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+  <span class="n">s</span><span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d95a9492">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Valores-iniciales-y-Restricciones-de-las-variables">Valores iniciales y Restricciones de las variables<a class="anchor-link" href="#Valores-iniciales-y-Restricciones-de-las-variables">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7654,11 +7758,8 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># objective function</span>
-  <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">g</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># initial point</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># initial point</span>
+<span class="n">x0</span><span class="o">=</span><span class="n">x0</span>
 <span class="n">bl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span> <span class="c1"># lower bounds</span>
 <span class="n">bu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">11.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span> <span class="c1"># upper bounds</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="n">bu</span><span class="p">))</span> <span class="c1"># box constraints</span>
@@ -7667,7 +7768,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8e11fb1bb07787a6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8e11fb1bb07787a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7675,32 +7776,35 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">n_val</span><span class="p">):</span>
+       
+       <span class="n">data</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="n">TrustRegion</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+      
+     
+       <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+       
+       <span class="nb">print</span><span class="p">(</span><span class="s2">"*****************************************************************************************"</span><span class="p">)</span>
+       <span class="n">data</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="n">SLSQP</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+       <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+       
 
-
-
-<span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">n_val</span><span class="p">):</span>
-        <span class="k">global</span> <span class="n">n</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="n">n_val</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"n ="</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s2">":"</span><span class="p">)</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-
-        <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'trust-constr'</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">'gtol'</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">})</span> <span class="c1"># call trust-region method</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Result:"</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="c1"># print the optimal solution</span>
-
-        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-        <span class="n">execution_time_ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Execution Time:"</span><span class="p">,</span> <span class="n">execution_time_ms</span><span class="p">,</span> <span class="s2">"ms</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">)</span>
-  
-  <span class="c1">#trust_region(f=f, x0=x0,bounds=bounds)</span>
- 
-
-
-<span class="n">benchmark</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">benchmark</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">benchmark</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-<span class="n">benchmark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+      
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75a8f94b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">benchmark</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7713,26 +7817,160 @@ $$</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>n = 10 :
-Result: [1.19992576 9.00187255 1.19929283]
-Execution Time: 123 ms
-
-
-n = 100 :
-Result: [1.199949   9.00187127 1.19929337]
-Execution Time: 87 ms
-
-
-n = 500 :
-Result: [1.19998268 9.00008491 1.1997185 ]
-Execution Time: 81 ms
-
-
-n = 1000 :
-Result: [1.19998268 9.00008491 1.1997185 ]
-Execution Time: 76 ms
-
-
+<pre>trust-constr
+   Variables Result    Optimo  Execution Time
+0          1.195135  0.000276            1278
+1         11.171826  0.000276            1278
+2          1.193929  0.000276            1278
+*****************************************************************************************
+SLSQP
+   Variables Result    Optimo  Execution Time
+0           1.20000  0.000261             510
+1          11.20000  0.000261             510
+2           1.19859  0.000261             510
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=da9137a7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">benchmark</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>trust-constr
+   Variables Result    Optimo  Execution Time
+0          1.195135  0.000276            1215
+1         11.171826  0.000276            1215
+2          1.193929  0.000276            1215
+*****************************************************************************************
+SLSQP
+   Variables Result    Optimo  Execution Time
+0           1.20000  0.000261             485
+1          11.20000  0.000261             485
+2           1.19859  0.000261             485
+SLSQP
+   Variables Result    Optimo  Execution Time
+0           1.20000  0.000261             485
+1          11.20000  0.000261             485
+2           1.19859  0.000261             485
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c115d874">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">benchmark</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>trust-constr
+   Variables Result    Optimo  Execution Time
+0          1.195135  0.000276            1258
+1         11.171826  0.000276            1258
+2          1.193929  0.000276            1258
+*****************************************************************************************
+SLSQP
+   Variables Result    Optimo  Execution Time
+0           1.20000  0.000261             597
+1          11.20000  0.000261             597
+2           1.19859  0.000261             597
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90e94423">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">benchmark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>trust-constr
+   Variables Result    Optimo  Execution Time
+0          1.195135  0.000276            1176
+1         11.171826  0.000276            1176
+2          1.193929  0.000276            1176
+*****************************************************************************************
+SLSQP
+   Variables Result    Optimo  Execution Time
+0           1.20000  0.000261             655
+1          11.20000  0.000261             655
+2           1.19859  0.000261             655
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b5118000">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">),</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>0.009229317584041634 1000
 </pre>
 </div>
 </div>
@@ -7924,401 +8162,358 @@ $$</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>n = 10
-Solution: [ -3.43334072  23.07448406   1.9167101   -5.59405935  16.47895599
-  -3.0033185    9.87808383 -24.68305425 -31.51300282  12.87730326]
-Function value: 3.311673972373394e+298
-Execution time: 3ms
-n = 100
-Solution: [ -1.84249826  43.14856427   2.19550093 -24.10709204  -1.78495563
-  22.1260701  -10.16920081  19.62028459 -12.0294442   27.47302345
-  15.83163593   5.61409592  10.27017325 -24.6219386  -20.25008257
-  -4.80481602  33.57080505 -21.36899607 -36.65367837  23.12873171
-   2.47026364 -36.95869399  31.28290903 -34.85664651  26.04552442
-  -3.30826553 -13.94682473  24.80297462  12.43048804  13.20694823
-  17.2667632  -35.9618181   -2.09263849 -11.36473305 -15.13283168
-  25.05005933 -28.37995704  -8.0620153  -39.41389788  -5.97808193
-   2.96292374 -14.01702507 -33.50500022 -15.70163637  35.96927791
-   5.97058804  27.44644491   6.46144403  10.80385873  38.05184048
- -29.91153415  -1.16319631  -0.48638056 -29.82326523  -3.33406073
- -11.67244888   2.66914174 -12.97192204  12.21396562  33.98643857
-   7.93832884   8.80597799  10.58018085  -2.0382651   39.80892503
-  37.12241643   8.44464167  12.89133258   6.60368517 -10.4864019
-   9.052078    12.76054595 -42.67299949  27.8819411    9.18518073
-  28.08412707 -12.22397632   2.63782179  10.70120591  -4.45000033
-   7.62070236  43.18767344 -44.10230819 -26.62683773 -27.24810199
-  -7.731117    15.26624894   5.59645541  -0.65798987   5.03595014
-  13.40212505 -24.97214573 -30.7952709   29.53632783 -38.54483061
- -11.29543909  36.58901264 -11.53221533  20.50469579   4.61224881]
-Function value: 3.535840485716369e+160
-Execution time: 3ms
-n = 500
-Solution: [ 46.53238243  27.50048893 -35.96907299  43.49352137   3.70046468
-  14.02289179  -9.60007855 -25.99917253  -4.14660194  20.67346085
- -18.72341837   7.40287855  27.21289691  15.06234021  -6.6214372
-  16.24979145   0.61130367 -41.28094125  -1.24202481 -35.2900437
- -12.27586032  -6.70873047 -28.49898158  50.4648623  -20.71694627
- -28.09540422 -28.09219747 -62.14021637  62.04520254  37.61260672
-   6.82033022  34.43610647  31.72434461  56.02990176  13.02116459
-  62.86553155  17.5316819  -55.92820097 -35.7217913  -13.6305224
-  11.49120582 -38.89299338 -30.723338   -14.64154487 -54.01809079
-  25.08217549  55.42136632  55.22789879 -42.39208552 -33.27866742
- -62.40112925  39.02203778  38.29433143  -4.59209798 -19.73528948
-  43.51905949  10.22905403 -13.1260023   -6.40450225  50.57276531
-  53.90090001 -18.89174874  -0.60716104  -9.29239692 -49.81805367
-   1.97401196  22.92838093 -12.47370254 -27.39473423 -14.72750306
-  25.32856822  35.79800789 -23.27302819  57.27309561 -31.81648752
-  -2.19574726  11.50648632   3.18094057  20.91831093 -28.14892894
-  -1.40520782  -2.04813271 -22.03887322 -27.19038156 -50.01955446
-  29.63340626  17.26384307  56.29235742   5.95695443  60.8738028
- -57.64167191  63.51774573  25.28132168  25.31705014 -25.57555614
- -11.56221711  -5.81964357 -38.88299404  13.42855293 -26.74991484
- -47.25601014  27.28507954  21.67651042  50.04996853  -0.73973221
-  -6.04565949 -64.15738455 -15.0187946    6.93288495 -63.45784035
-  53.1506374  -23.48338055  -5.54061075  42.58813142  47.74432079
-  25.34048565 -31.90772731  -6.01362944 -15.44207531  50.23421208
-  20.67890767 -45.73975113  14.67301423  31.49599775  14.98257882
-  27.96204465 -16.29443431 -49.78431022 -14.40822119  56.16422165
-  26.44630807  19.92898559  13.55798319  14.3702155   43.36231122
- -37.38404691 -39.74204109  56.0512248    6.86505645  -4.40396229
-  -6.27950355  13.89759717  -2.76791523 -31.46060884 -42.73207296
- -56.65083033  23.10874792 -44.29607088   3.72899575 -37.5834577
-   1.37222865 -15.79095837  -8.87383002  51.44108901 -49.90804325
-  -2.80161749  24.51944994  11.65372677  45.0199765   10.14652983
-   8.18181779 -57.98197068 -33.19788418  12.23773581 -59.47249996
-  -7.41171736  41.10688834 -34.99177869  10.64139009 -44.23500381
- -58.67610942  31.83907004  48.20677096 -49.07494296 -59.83644224
- -57.10790236   9.09967156  16.35841085   4.4005452   49.91785236
-  52.2110125   57.83922034 -48.98874234 -13.07916159 -41.60927241
-  15.19910312   2.46509644 -30.00432717 -44.69778896   8.27190826
- -53.17557783  28.39212858 -51.6413468  -20.75847343  -9.28093902
- -47.57601509 -10.28320742  23.90211926  29.86368182 -30.39178641
- -34.48795776 -60.96676407  27.0845723  -33.95579459 -21.0641529
-  27.58306442 -17.69192061  52.7954793  -39.51079062 -16.68985346
-  22.1908588  -15.69289008  23.82244582  22.63541975  41.19437589
- -12.45458013  35.76618756  29.28841033   9.42501106 -63.92526213
-  34.49756375  38.39212294   1.60268786  -8.7151591  -17.65139554
-  38.40073817 -58.09295467  10.57557589  26.83526304   1.52469751
-  53.57762184 -45.09349296  56.23320002  19.41491649 -32.18430055
- -53.75506126 -48.82970665 -18.65606953 -14.14493738  -7.07659187
-  14.75810142  60.15487676 -35.3924193   64.16669693  -1.54052943
-   8.4991189  -26.21259299  -1.13158444 -46.39809772  45.07531595
-  23.22425757  27.85649572  19.0839651  -25.9000494  -15.32906569
- -24.91810875 -13.9312945  -49.7579736   48.45979261  48.70971702
-  25.11933443  13.39556575  50.75074828   2.47874897  -3.49988204
- -55.288128    57.66300168  19.61144041   4.13051278 -25.31971177
-  17.3272368   60.36243617 -13.62218118  -8.09376427  15.81893433
-  53.97325931  36.27692532  -6.58733819 -22.24398622  19.39398178
-  -2.30036321 -53.74914023 -18.90876184  -4.70656831  -6.04126193
-  30.54018807 -19.36965383  11.51707219  32.88935121 -18.7330682
-  57.74465921  15.88129117 -58.3431356    4.41547186 -23.94945122
- -56.15176133 -41.01953714 -55.28041556   5.55643534  16.03787273
-  60.4326957   -9.45794727 -19.57282413  53.2185225  -18.93246867
- -10.40244788 -44.98731196  -9.64550806  36.90328493  -5.99540665
-  -2.78581204  15.86528688 -36.50908647  29.7442275   11.72527427
-  54.61863725  14.77040755 -44.47953131  39.52538476  53.81955017
-   2.88868847  47.25211092 -37.71975767 -14.50100409  52.60501547
-  11.63089174  38.70170226  51.50354569  16.19207236  46.17210182
-   7.13334761 -29.55651397 -45.0429918    1.73454178 -45.93760398
-  54.19745946  -4.07367775  20.06560221  55.89182513  -7.77137686
- -48.51604468   9.2357628  -25.63677764  29.42812778 -28.46228291
- -12.90880647   7.1962725   35.04764516  -0.13534705   9.4249413
-  -9.85843936  14.49845157  50.41722612 -38.2327182   46.05899704
-  14.45863829   6.97043213  57.96087701  60.29413267  14.70626008
- -58.41032201 -39.05065965 -13.37504188  14.52522039 -53.99952071
-   0.9331948  -35.14096234  -0.28008534  55.14941604  -7.33919448
-  15.72074376   3.94912171 -27.89171235 -24.40714224  23.14057967
-   5.4629849  -39.23869241   1.62178198  -0.29754744 -42.72418258
- -42.41353864  50.36052951  35.1906384   48.52058166 -22.72809329
- -46.33021095  55.1765071  -23.8336785  -12.11885761  -9.81430109
- -26.49851592 -28.09230403   5.40202272 -21.57556838 -36.21814667
- -20.77982278  40.29040982  59.86366955 -28.99782691   8.37483399
-   7.35959925  48.86821186 -18.27126179 -51.52659318  -1.37370965
-  52.64401447  60.78511995  10.89282942   8.01048884  40.00214364
-  16.87990489 -39.70959098  14.88031413  45.12231232 -30.14011282
-  63.12857945   0.32820268  34.4906949   -0.09272886  -2.64069581
-   2.17584634 -47.54585177 -36.49215177  37.27888745 -24.62026236
-  14.67100863   3.5793539   55.99892005  13.82444597  -1.68044796
-  21.10702215 -12.06327562  -3.55518373 -31.99174244 -41.98989122
- -13.86341885  16.93061334  26.04715083  23.79269439  34.54937418
- -49.67820318 -52.41953149   9.36153861  -1.01783042  13.31389499
-   0.53384259 -47.96547159 -45.72764295  46.2695717    3.45562655
-  62.97895894  59.71700268 -22.02470268   5.63074123   8.6548264
-   1.71723647  11.73221077  15.23450175 -37.54727599  35.77323886
-  -9.71831673  19.52636833 -27.87366627  60.51534311 -11.1227968
- -32.51903536  14.82039821 -30.34212069  41.35444502   2.86018327
-  -4.09401309   1.34807143   6.26358921 -11.82938177  10.88953153
-  14.22138074 -49.46323565  58.42990423  -2.7958857  -35.3562683
-  13.06040269   0.37549386  25.32305238  53.96711982  47.66492031
- -16.69304135 -46.81108585 -37.21083398  62.30466495   2.21671004
-  46.69884636 -17.49565765  29.58833936  -1.63879741  48.75347303
- -11.34061874  -1.65714936   6.05911455 -30.89353264  -6.2055837 ]
-Function value: 159.885592819089
-Execution time: 11ms
-n = 1000
-Solution: [ 6.06569702e+00 -3.32587700e+00  3.60556212e+00  1.01963988e+01
-  1.33558562e+01 -3.18321768e+00 -1.99886661e+00  4.16568152e+00
-  2.40838645e+00 -1.45632011e+01  1.35807170e+01 -3.43956227e+00
- -5.79619244e+00  9.13222527e+00 -6.62078948e+00 -8.79494238e-01
- -4.23718613e+00  1.17194719e+01 -3.58005953e+00  1.32479159e+00
-  2.98510292e+00  2.72667864e+00 -9.36881999e+00 -3.33262352e+00
-  6.84973828e-01 -3.38965089e-01  1.19473134e+00 -4.95385761e-01
- -1.42094339e+01  5.88790521e+00  1.12938595e+01  1.30797787e+01
-  2.21684913e+00  2.08253669e+00  5.72054571e+00  1.91644199e+00
- -3.47054328e+00  1.06917046e+01 -9.54678573e+00  1.25286299e+01
-  3.52627063e+00  5.79182213e+00 -1.06205946e+01  5.49837191e+00
- -9.15620772e+00 -5.23378285e-02 -3.37823009e-02 -1.58526304e+00
-  3.18749162e+00 -6.09723717e+00  2.28634230e+00  1.11794452e+01
- -1.27022094e+01 -3.30262661e+00 -3.62018226e+00  1.40954974e+01
- -1.42533409e+01  3.57651802e+00  1.09915415e+01 -3.00698218e+00
-  5.93873626e+00  5.92940257e-01 -1.07318599e+01  1.38927413e+01
- -3.69107889e+00 -7.93044513e+00 -3.51259791e+00  1.10598157e+01
- -3.53920583e+00 -8.38284451e-01 -1.33730665e+00  8.64020648e+00
-  5.43282552e+00  6.55527880e+00  4.78666995e+00  4.05459827e+00
-  1.32511455e+01 -5.40286757e-02  1.49088643e+00 -1.10359831e+01
- -1.64114666e+00  9.85772956e-01 -1.27941133e+01  4.31503146e-01
-  1.18357854e+01 -6.39974319e+00 -8.08677599e+00 -1.43111100e+01
- -2.96190443e+00 -9.26180367e+00 -2.29157141e+00 -5.96237904e+00
- -2.50213046e+00 -1.26904570e+00 -1.37343862e-01 -8.16948981e+00
- -1.88038273e-01 -9.12139189e+00  9.30399482e-01  1.14093965e+01
- -1.63853797e+00 -4.59339820e+00 -1.13129780e+01 -6.28773828e+00
-  1.79278257e+00 -3.10467298e+00 -7.47637448e+00  6.57382270e+00
-  3.64994629e+00 -4.17509683e+00  1.19122885e+01 -1.32574200e+00
- -1.30366946e+00 -1.30698128e+01  1.00138669e+01 -4.64946442e+00
-  7.73455259e+00  1.32528222e+01 -6.08123754e+00 -8.44646313e+00
-  1.16071541e+01  7.99223238e+00 -1.05996554e+00 -1.02756330e+01
- -4.57021213e+00 -2.61909458e+00 -5.18350084e+00  8.48558625e+00
-  4.73505874e+00 -1.38528635e+01 -1.01863686e+01  5.16800620e+00
- -9.79495879e+00 -3.23043259e+00 -8.74359279e+00 -1.35517117e+01
-  8.69718945e-01  1.39586976e+01 -5.89195568e-01  1.33437282e+01
-  9.97889996e-01  8.68631436e+00 -9.04463375e+00 -4.25781669e+00
- -5.63579385e+00 -3.25450526e+00  3.41464947e+00  1.00594466e+01
-  1.17122261e+01 -9.16277808e+00 -6.75786990e+00  1.24476076e+01
- -9.21455957e+00 -2.35639337e+00  1.56033194e+00  1.45676669e+01
-  5.55660463e+00  1.56489254e+00  2.86279006e+00 -3.83837669e+00
- -5.15189734e+00  1.31388553e+01  3.15031423e+00  1.22767697e+01
-  1.15079360e+01 -7.35052499e+00  4.28841590e+00 -7.12850306e+00
-  6.65595957e-01  1.21984024e+00  3.77125530e+00  3.08450526e+00
- -2.57643313e+00 -4.31317570e+00  4.28710832e+00  1.05102888e+00
-  3.39758740e+00  2.38518609e-01  4.41178019e+00  1.01374888e+01
- -8.74470166e+00  5.17014678e+00 -1.34801181e+00 -3.48086712e+00
-  2.36625443e+00 -6.10144539e+00 -1.28546271e+01  6.61369180e-01
-  8.68581712e+00 -1.22307755e+01  2.85970818e+00  8.08935042e+00
- -1.03116973e+01  5.62377672e+00 -8.32256815e+00 -7.49112111e+00
-  1.05131982e+01  4.96585652e+00  3.81122803e+00 -3.83035222e+00
- -8.05094827e+00 -1.95362656e+00  6.54687544e+00  2.21432912e+00
- -5.10540692e+00 -5.85740060e-01 -1.21452718e+01 -1.03153587e+01
- -8.29363403e+00 -4.01187249e+00  1.40065465e+01 -6.70662357e+00
-  8.00561319e-01 -3.40514295e+00 -8.51805732e+00  2.14171212e+00
-  5.27606217e-01  8.30803891e+00 -3.22939761e+00  3.83695916e+00
- -4.47730642e+00 -6.47061278e+00  7.48780334e-01 -4.63837336e+00
-  7.74835471e-01 -5.77061581e+00 -4.83877899e+00 -2.19067209e+00
-  3.34288107e+00 -1.08226822e+00 -1.28056295e+01 -2.34106478e+00
- -1.13828110e+00  5.19695014e+00 -2.43945856e+00  6.72858512e+00
-  3.36288951e+00 -6.49688849e+00  7.86631107e-02  1.82744545e+00
- -4.17327680e+00  4.23738441e+00  1.12060498e+01  2.23666705e+00
-  1.43621853e+01 -1.35640509e+01 -4.31415829e+00 -8.38605462e+00
- -9.99832072e-02 -2.08824947e+00  1.32690321e+01 -1.12145024e+01
-  1.30559600e+01  1.07307850e+01  2.70260020e+00 -1.19338922e+00
-  3.95262232e+00 -1.31828404e+00 -1.05662424e+01 -1.05911961e+01
-  1.08663256e+01  3.00562830e+00  1.01562333e+01 -1.95339490e+00
- -2.03008051e+00  5.03977348e+00  1.93002664e+00 -1.19859837e+01
-  2.30127450e-01  1.98211879e-01  2.01017119e+00 -9.97648924e-01
- -2.24365371e+00 -4.11885332e+00 -4.44258076e+00 -1.42921013e+01
- -3.67689410e-01  1.04962741e+01 -2.42674809e+00 -1.15224254e+01
-  6.09911634e+00  4.12199171e+00 -7.36963812e+00 -1.17157297e+01
-  5.21949861e+00 -9.94792725e+00  2.09051223e+00 -6.64331524e+00
- -8.77772685e+00  4.65536144e+00 -4.38374946e+00  9.30744409e+00
-  1.03774967e+00  3.09374544e+00  4.06390291e+00  3.76961095e+00
- -1.03750239e+00  6.06023931e+00  8.50788718e-01  1.24305160e+01
- -1.14878361e+00  6.53619762e+00  8.04531802e+00 -1.65958007e+00
- -2.77429152e+00 -5.52891938e+00 -9.64244023e+00  5.09760094e-01
-  6.03182607e+00  1.25989369e+01 -1.62214889e+00  5.37839295e+00
- -1.28488316e+00 -3.44693755e+00  1.16480397e+01  5.32049013e+00
- -9.33232518e+00  1.36005163e+00  2.36009584e+00 -2.09693832e+00
-  2.23925596e+00 -2.85617679e+00 -3.33784659e-01 -6.40678201e+00
- -3.76755800e+00 -9.62175331e+00 -8.77205781e+00 -1.09490141e+01
- -1.61330666e-03  3.98132758e+00 -4.09321241e-02  2.24589431e+00
-  6.14981898e-01  2.94390305e+00 -3.07176390e+00  9.15536145e-01
- -1.41228638e+01  5.25823778e+00  5.79684439e+00  5.11592147e+00
- -1.82382852e+00  1.37840165e+00 -3.53703999e+00  1.15562109e+01
- -8.19613222e+00  1.57943964e+00 -7.00171209e+00  1.13227294e+00
-  5.18814970e+00 -2.00952191e+00  6.69535294e+00 -7.94698122e+00
- -1.19613000e+01 -1.20794809e+01  2.35000552e+00 -8.70796859e+00
-  1.41767956e+01  7.11145754e+00  9.00726816e+00 -2.77699717e+00
-  3.09055860e+00 -7.90661151e+00 -4.94845211e+00  1.16998793e+01
-  2.86036307e+00 -3.95362164e+00  9.46597788e+00 -8.42637214e+00
- -6.04416410e-01  6.49437488e-01 -5.22537541e+00 -1.31950971e+00
-  9.60135818e-01 -5.11214838e+00 -4.54697901e-01  1.19234989e+00
- -1.27723963e+00 -1.66699025e+00 -3.66284033e-01  1.06721579e+01
-  1.26075182e+00  4.28318972e+00  2.71564863e-01 -5.20722035e+00
-  3.07023690e+00 -1.00192417e+01 -6.38173063e+00 -1.11758975e+01
-  6.43536015e+00 -4.53325241e+00 -6.72767114e+00 -6.27077920e+00
-  1.45332566e+00  8.29588380e+00 -9.64797307e+00 -1.37166611e+01
-  1.38113195e+01  7.48467660e+00  3.22451044e+00 -2.73247819e+00
-  3.40198247e+00  4.65931340e-01  1.30792594e+01  2.19183157e+00
-  1.24975862e+01  3.73433572e+00 -8.81246693e-01 -1.65362282e+00
-  1.05722553e+01 -4.22933453e+00 -1.01328090e+01 -5.64455315e+00
-  2.53220963e+00 -4.54008000e+00 -3.50238515e+00 -1.07805253e+01
- -2.43180438e+00  2.58777723e+00 -1.31394955e+01 -1.00656547e+00
- -9.50305192e+00  8.36414254e+00 -1.12812195e+01  1.44401266e+01
-  4.19967445e+00  8.40123874e+00 -3.65894827e+00  9.58153632e+00
- -5.28062866e+00  1.31147035e+00  1.42457003e+00  4.24573422e+00
- -2.44310025e+00  9.53770740e+00 -2.05568732e+00 -1.22864622e+00
- -3.30210089e+00  4.19616420e+00  8.74348932e+00 -4.07136084e+00
-  1.20505028e+01 -1.45202360e+01 -7.34100754e+00 -1.06110648e+01
-  3.75820907e-01 -2.29127981e+00  1.53975382e+00  1.06506082e+01
-  1.37199512e+01 -2.61328412e+00  1.28717802e+01  4.06256835e+00
-  5.68168398e+00 -4.29081151e+00 -1.03490265e+01  3.63538989e+00
-  1.25641494e+01 -5.26736329e+00 -1.32508693e+00 -1.34562263e+01
-  1.42533872e+01 -3.83650958e+00  1.20232881e+01  1.15121511e+00
-  3.02193567e+00  6.69626657e+00  5.12398097e+00  1.43557161e+01
- -4.11576927e+00 -4.18398445e+00 -1.70713518e+00  1.49089647e+00
- -5.16973701e+00  8.47633561e+00 -6.09767649e+00 -4.96599501e-01
- -5.04580898e+00 -9.16445317e-01 -4.11539175e+00  6.13856869e+00
- -8.05027973e+00  1.00969948e+01  1.15090825e+01 -3.02178148e+00
-  4.66354088e+00  3.03058840e+00  1.69892066e+00 -1.07887609e+01
- -1.63759029e+00 -3.45835929e+00 -1.24402116e+01 -1.58445306e+00
-  1.35240520e+00 -9.52006640e+00 -9.65279038e-01  1.02400380e+01
- -1.42955740e+01  2.46973515e+00 -3.21311490e+00  1.21111111e+01
- -4.74025790e+00  1.12833064e+01  8.72739594e+00 -2.65931247e+00
- -2.51613417e+00  1.30663764e+01 -3.96471273e+00  1.30642780e+01
- -6.56088384e+00 -3.98728165e+00 -4.31428316e+00 -7.90792095e+00
- -9.62845784e+00 -2.46180513e+00  2.47224329e+00  6.78677226e+00
-  3.34171403e+00 -1.27138859e+01  1.81048149e+00  6.84748208e+00
- -9.50313405e+00 -1.25108116e+01 -1.96137477e-01  7.06025193e+00
- -8.09384794e+00  2.90941006e+00  9.41041873e+00  4.41049850e+00
-  6.72000055e-01 -8.09683737e-01 -1.43028256e+01  1.39222312e+01
-  4.09352389e+00 -1.21447382e+01  4.24080135e+00  4.76805870e+00
-  3.83423924e+00  5.01650353e+00 -3.51376807e-01 -1.37313205e+01
- -1.15808862e+00  3.94615772e-01 -2.05760426e+00 -3.17729307e+00
- -8.53261184e+00  6.31371013e+00  1.15722988e+01 -8.21874513e+00
-  3.01164348e+00  6.49302042e+00  1.23883392e+00  7.39728746e+00
-  7.75921854e+00 -1.41807347e+01 -2.03648281e+00 -9.96746646e+00
- -6.78254569e+00  6.98838519e+00 -4.96442152e+00  3.00368435e+00
-  2.31429167e+00 -2.53430899e-02 -8.12442479e+00  1.45345345e+01
-  8.24749150e-01 -1.82394595e-01  1.06961253e+01  3.64118353e+00
-  2.48910743e+00 -1.33502734e+01  1.28275839e+01 -6.67213211e+00
- -1.10947347e+01 -4.99913059e+00  4.05306800e+00  6.85866889e+00
- -1.09296063e+01  1.43189243e+01  5.56064428e+00 -2.85682097e+00
-  4.01371136e+00  7.88580545e+00 -3.09501834e-01 -3.96221404e+00
- -1.64215047e+00  1.42276492e+01  5.86973181e+00  4.88581306e+00
- -1.18694876e+01 -8.12187244e+00 -1.67184438e-01 -3.33110596e+00
- -7.15622626e+00  3.56470311e+00  3.53610507e+00 -1.21282367e+00
-  1.23969677e+01  1.32333209e+01  3.38215553e+00  3.61932007e+00
- -1.23412219e+01 -5.04249709e+00 -9.98049003e+00  3.44550605e+00
- -1.64434904e+00  1.56605606e+00  1.64715490e+00 -3.45429356e-01
-  9.82359225e+00 -3.93643995e+00 -1.09613495e+00 -1.30757011e+01
- -4.03074651e+00 -3.92134883e+00 -3.53075601e+00 -7.22601943e+00
-  4.69584649e-01 -6.86118146e+00  3.25833793e+00  1.15397229e+01
-  8.05605176e-01 -1.43187880e+01  6.62350989e+00  4.48372320e+00
-  6.34235723e+00 -1.16027010e+01 -5.59410572e+00 -3.83012141e+00
- -1.31281114e+01 -3.31248295e+00  1.39384338e+01 -6.06888133e+00
-  8.33796066e+00  1.05411589e+01 -7.90670748e+00  1.08383721e+01
-  2.61379939e-01  1.29920277e+01 -1.24929784e+01 -1.40995162e+01
- -7.42917153e-01  5.11026654e+00 -4.73709698e-01 -4.49731440e+00
- -1.08185109e+01 -2.95031739e+00 -1.36133822e+01  2.79267599e+00
-  1.06312797e+01 -4.58135870e+00  4.10183077e+00 -1.25894146e+01
-  6.69801377e-01  4.73184079e+00  1.05313292e+01 -1.23025736e+01
-  5.36129420e+00 -1.67664588e+00 -2.30548342e+00 -9.17372295e+00
-  1.24323819e+00 -1.76183731e+00 -7.74013595e+00 -6.69962759e+00
- -1.32616873e+01 -2.67732214e+00 -3.57648207e+00 -4.04080521e+00
- -1.00092041e+01  1.41143566e+01  3.83127980e+00 -1.05443793e+01
- -5.12330805e+00  4.27998273e+00 -2.79369558e+00  1.89837322e+00
- -1.01937469e+00  1.96578101e+00  4.26266511e+00 -7.63164643e+00
-  6.11962416e+00 -3.16724974e+00  9.12117906e+00  8.11573372e+00
- -9.41975081e+00  1.43999238e+00 -4.76246495e+00  1.32011030e+00
- -5.97799066e-01  1.84666183e+00 -1.35448983e+00  1.67134986e+00
-  2.68306542e+00 -3.08512981e+00 -4.60373313e+00 -4.57902648e+00
- -3.24694513e+00  1.13825055e+01 -9.46006589e+00  1.90253888e+00
- -5.27761854e-01 -7.76440911e+00 -2.36658729e+00 -4.82207360e+00
- -3.60184828e+00  1.34788895e+00  8.90431270e+00 -7.72398816e-01
- -8.70255420e+00 -9.02444800e-01  1.10144892e+01  1.22165133e+01
- -5.15026096e+00  2.22789351e+00  1.94807291e+00 -3.65480756e+00
-  2.16876477e+00  3.76021837e+00  2.75031440e+00  1.10747150e+01
-  3.19102076e-02  2.31388264e+00 -2.65515706e+00 -1.78860130e+00
- -5.61284360e+00  7.76647268e+00  9.16403675e+00  1.33436994e+00
-  5.47781447e+00  4.10718850e+00  6.71593656e+00  8.63721819e+00
- -4.26999382e+00  6.39501320e+00 -2.61897032e+00  1.12682486e+01
- -1.35675373e+01  2.25797527e+00 -6.91758775e+00 -5.52092387e+00
-  2.93934904e+00 -2.15908282e+00  3.96484258e+00  6.53063872e-01
- -1.12544212e+01 -5.92237851e-01 -6.84991928e+00 -5.25978007e+00
-  4.20524216e+00 -3.75105507e+00  5.05844357e+00 -5.62235585e+00
-  7.41068860e+00 -1.00197583e+01 -1.12886364e+01 -6.44059281e+00
- -2.13779619e+00  4.56298923e+00 -1.21465021e+01  1.34631364e-01
-  2.44202997e+00  7.33829112e+00  2.19923494e+00  5.65240049e+00
-  1.25323991e+01  1.11394029e+01 -1.39657537e+01 -3.80480345e+00
-  9.16746380e+00 -5.88665702e+00  2.75897579e+00  1.22814736e+01
-  8.02186597e+00  6.12840398e+00  6.35624721e+00 -1.17410639e+01
-  1.40926445e+01 -5.70821596e+00  1.14033950e+01  3.87121002e+00
-  1.86023207e-01 -3.75448325e-01 -7.11204648e+00 -5.28421124e+00
- -1.09506665e+01 -8.22004243e+00 -1.82307971e-01  7.55681719e+00
- -1.95021000e+00  2.62596533e+00 -9.60859625e+00 -1.01237272e+00
- -9.99145771e+00 -4.65238500e+00  4.00069363e+00  7.09091352e+00
- -1.20904242e+01  7.16240130e+00  1.06661298e+01 -1.27801323e+01
- -2.17438445e+00 -7.22871910e-01 -9.61599690e-01  5.08579236e+00
- -4.23262286e-02 -1.15015121e+00  2.41117715e+00  8.00169038e+00
-  1.07127196e+01  2.00360997e-01  3.39213192e+00 -1.19625862e+01
- -5.06733238e+00  5.80332114e+00 -1.37740352e+01  3.00502989e+00
- -7.13978528e-01 -3.41982885e+00 -4.04562406e+00  1.57141117e+00
- -1.11358270e+00  7.27628146e+00 -9.01625034e+00  9.31075304e+00
- -4.29560183e+00  5.37772068e+00  8.92343817e+00 -4.45316597e+00
- -1.02976258e+01 -1.39283069e+01  4.03705707e+00  9.72657291e+00
- -6.18103969e+00 -1.42580594e+01  3.80560906e+00 -2.00884197e+00
-  9.92856027e+00 -7.68351712e-01 -1.18923889e+01 -1.36056194e+01
-  3.82666901e+00 -1.08461779e+01  6.33898790e+00 -2.91813527e+00
-  2.90342537e+00  7.55695926e+00  8.45562628e+00  7.88236337e+00
- -3.14815102e+00 -8.69328334e+00  5.10361712e+00  3.39383105e+00
-  6.19342456e+00 -1.15569416e+01  4.55928142e+00 -1.35059964e+01
-  2.52600314e+00 -8.34255860e+00  4.35989768e+00 -2.33635989e+00
-  1.08898279e+01 -3.11608913e+00 -1.42903525e+01  3.51171132e+00
- -4.92121983e+00 -7.58107172e+00  2.63566298e+00  1.17969508e+01
-  1.26695945e+01  7.80040244e-01  1.14844614e+01  1.06369206e+00
-  5.72914286e+00  2.56906707e+00 -5.97206853e+00 -7.92433760e+00
- -2.70898582e+00 -6.24578084e+00  2.87072319e+00  7.91316441e+00
-  7.99463173e+00 -1.13563395e+01  2.26433072e+00 -9.63369088e+00
-  3.37568133e+00  3.40211044e+00 -1.28668992e+01  1.21139591e+01
- -8.43884740e-01 -4.11471105e+00 -4.22839116e+00 -6.09022298e+00
-  1.94900916e+00  2.61457212e+00 -1.20371883e+01 -2.93317899e+00
- -1.01808412e+01  5.02101259e+00 -3.77941050e+00 -1.44362386e+00
-  1.83166442e+00  6.36355425e+00  8.54424596e+00  2.29189903e+00
- -1.35732310e+01  2.24640890e+00 -3.98973748e-01  2.39360130e-01
- -1.21849719e+01  7.40886402e+00  3.93817787e+00 -1.05044880e+01
- -1.98287447e+00 -4.52752205e+00 -6.70965910e+00  8.58451562e+00
- -4.62541993e+00  1.02553159e+01  5.44962374e+00 -9.79018618e-01
-  1.25463068e+01 -1.44046522e+00  1.34108060e+01  4.71131204e+00
-  9.33710771e-01 -1.75917532e+00 -4.69829710e+00  2.69667792e-01
-  1.23759653e+00  8.63326890e+00  2.21791121e+00  3.99335898e+00
-  4.79706350e+00 -3.68533650e+00  1.57967641e+00  7.45502075e-01
- -2.46757550e+00  4.94861783e+00  1.43789244e+01  8.19276745e+00
- -1.17977800e+01  3.27855303e+00  1.38816335e+00  7.47487508e+00
-  3.73758688e-01  4.17162831e+00 -5.78110382e+00 -1.75554535e-01
- -4.74472875e-01  1.21587654e+01 -8.98562576e+00 -8.35269755e+00
-  3.80270531e+00 -1.13725802e+01  8.99107574e+00 -8.77388024e+00
-  5.34735706e+00  8.07957450e-01  1.01612858e+01  1.05249425e+01
- -2.46965740e-01  7.67591279e-01 -5.81271506e+00  9.08960651e+00
- -5.04889499e+00 -1.34698487e+01 -3.69186482e+00 -3.94907433e+00
- -5.41955609e+00  2.79636506e+00 -1.18236614e+00  3.61603250e+00
-  1.13776130e+00 -1.50022418e+00 -2.20465420e+00  4.41372505e+00
-  1.11115721e+00 -8.80951842e-01  5.32116506e+00 -9.61712755e+00
-  1.26602150e+01  1.76956336e+00  1.35628631e+00  3.59593316e+00
-  9.53317757e+00 -4.35518409e+00  4.79007036e+00  2.83691104e+00
- -6.74223750e+00  1.29604417e+01 -8.31328169e+00 -7.64493654e+00
- -2.81664232e+00 -6.30195603e-01 -2.59756506e+00  2.09536933e+00
-  1.36113474e+01 -5.55131307e+00 -3.16549801e-01  7.92573532e+00]
-Function value: 1.568677599392325e+289
-Execution time: 10ms
+Solution: [  4.40725186  15.56682862  19.07216472 -25.68724662  26.98563076
+  -6.58192141 -19.89920139  22.9692117   -7.99125477  -6.29364773]
+Function value: 0.43742938003646603
+Execution time: 108ms
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>C:\Users\paco2\AppData\Local\Temp\ipykernel_14692\3317161167.py:2: RuntimeWarning: overflow encountered in exp
-  g = np.exp(-0.1*(np.arange(1,n+1))*x[0]) - np.exp(-0.1*(np.arange(1,n+1))*x[1]) - np.exp(-0.1*(np.arange(1,n+1)) - (np.arange(1,n+1)))*x[2]
-C:\Users\paco2\AppData\Local\Temp\ipykernel_14692\3317161167.py:3: RuntimeWarning: overflow encountered in square
-  return np.sum(g**2)
-C:\Users\paco2\AppData\Local\Temp\ipykernel_14692\3317161167.py:2: RuntimeWarning: invalid value encountered in subtract
-  g = np.exp(-0.1*(np.arange(1,n+1))*x[0]) - np.exp(-0.1*(np.arange(1,n+1))*x[1]) - np.exp(-0.1*(np.arange(1,n+1)) - (np.arange(1,n+1)))*x[2]
+<pre>C:\Users\paco2\AppData\Local\Temp\ipykernel_22556\1371849685.py:12: RuntimeWarning: overflow encountered in scalar power
+  return g**2
+C:\Users\paco2\AppData\Local\Temp\ipykernel_22556\1371849685.py:2: RuntimeWarning: overflow encountered in exp
+  return np.exp(-0.1*(i+1)*xi)
+C:\Users\paco2\AppData\Local\Temp\ipykernel_22556\1371849685.py:10: RuntimeWarning: overflow encountered in exp
+  g3=np.exp((g31-g32)*x[2])
+C:\Users\paco2\AppData\Local\Temp\ipykernel_22556\1371849685.py:11: RuntimeWarning: invalid value encountered in scalar subtract
+  g =   g1- g2-g3
+C:\Users\paco2\AppData\Local\Temp\ipykernel_22556\1074568514.py:4: RuntimeWarning: overflow encountered in scalar add
+  s += g(x,i)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>n = 100
+Solution: [ 3.80611230e+00 -9.77895547e+00  1.09040961e+01  7.42000917e+00
+  1.01080841e+01  1.47551913e+01 -1.58104436e+01 -6.08976957e+00
+  1.57258438e-01 -2.32965745e-02 -1.07628496e+01  6.26376784e+00
+ -7.04203717e+00  5.66086938e+00  4.32354306e+00 -6.67354346e+00
+  1.59448481e+01  4.23827907e+00 -9.83494308e+00  7.99304930e+00
+  1.35579280e+01 -1.60501857e+01  1.05075840e+01  7.24677047e+00
+  7.42787734e+00  9.29810473e+00 -1.09172183e+01  6.37086271e+00
+ -1.08996840e+01 -1.13998656e+01 -1.16710226e+00  6.83202154e+00
+ -1.28412781e+01 -1.40862531e+01  5.46794259e+00  1.69589585e+00
+ -4.04742604e+00 -3.25084734e+00 -2.45049286e+00 -1.22077296e+01
+  1.34093993e+01 -2.92585366e+00  1.15014367e+01 -5.36289444e+00
+ -9.92697340e+00 -8.92922639e+00 -4.37949174e+00  4.63062083e+00
+  7.31534091e+00 -3.83632501e-01  3.60246450e-01 -8.20624378e-01
+ -3.44431809e+00 -6.74664353e+00  6.64936149e+00 -7.14690392e+00
+ -1.13489841e+01  1.56070893e+01  1.35538884e-01  1.95671709e+00
+  6.28441526e+00  9.34824152e+00  3.18826961e-03  7.73405507e+00
+  3.71015955e+00 -1.33691985e+01 -5.35168588e+00 -9.69948502e+00
+  1.30774719e+01 -3.56029891e+00 -5.72512203e+00 -1.06651653e+01
+  1.23285710e+01  1.83238160e+00  1.45408352e+01 -1.44266641e+00
+ -1.35879381e+01 -3.41288138e+00  8.94471635e+00 -9.98213420e+00
+ -1.30476258e+01 -4.46299447e+00 -1.13378736e+01 -3.47525428e+00
+  7.19731627e+00  4.45172992e-02 -1.18161752e+01 -2.30280255e+00
+  5.83711777e+00 -1.19804829e+01 -1.22395106e+01 -8.57650189e+00
+ -7.82761834e+00  1.07238396e+01  8.25312528e+00 -1.16348543e+01
+  1.16500747e+01 -1.37560613e+01 -8.68624037e+00  8.39492139e-01]
+Function value: inf
+Execution time: 524ms
+n = 500
+Solution: [ 2.07438582e+01 -1.30198650e+01  1.15454510e+01 -2.97829070e+00
+  1.48241456e+01  8.16019210e+00 -1.77376810e+01  1.65879725e+01
+ -2.67275812e+01 -1.21460731e+01 -3.31496640e+01 -2.75816311e+01
+ -7.04652131e+00  2.53521008e+01 -2.62882491e+01  1.03294186e+01
+ -1.88873794e+01 -1.75097984e+01  1.44933731e+01 -1.54908248e+01
+  1.81141181e+01 -4.16349109e+00  8.33392592e+00 -2.17454851e+01
+  1.85552728e+01  4.58937240e+00  2.12303727e+01  2.28718519e+01
+  1.46340469e+01  3.16025466e+01 -1.50997968e+01 -1.14571211e+00
+ -2.80593527e+01  2.29713714e+01 -7.76161562e+00 -1.28094454e+01
+  1.00402777e+01 -2.95221739e+00  9.13167392e+00  1.25135732e+01
+  1.50400316e+00 -2.28640146e+01 -1.13757892e+01 -5.15151343e-01
+  1.38107458e+01 -2.60660745e+01  3.79030634e+01  9.53973816e+00
+ -1.78766745e+01  2.31702138e+01 -2.99873811e+00  5.47566183e+00
+ -2.91434355e+01  4.16589684e+00 -4.39840163e+00  3.71980584e+01
+  5.99910249e+00  3.43710118e+00 -7.46232978e+00 -1.89549623e+01
+ -3.58354774e+00 -1.86623253e+01 -9.95611089e+00  1.86501987e+01
+ -1.88016274e+01  5.99832307e+00 -3.67737560e+01 -3.30132101e+00
+  3.69566003e+01 -3.17876261e+01 -5.53005841e+00  2.72919791e+01
+ -9.29432026e+00 -1.44544770e+01 -1.02335600e+01  1.53988404e+01
+  1.50096492e+01  3.36010494e+01  2.93211304e+01  3.00651639e+01
+  3.31127816e+01 -2.07605187e+01  3.78827963e+01  1.02101209e+01
+ -1.28716583e+01 -3.58261120e+01  6.87655341e+00  1.60084795e+01
+ -1.16383285e+01  1.93431766e+01 -3.56625675e+01 -1.08867501e+01
+  1.91246031e+01  7.10624904e+00 -1.31911792e+01 -1.59805010e+01
+ -3.40865519e+01  1.08544372e+01 -8.75883950e+00 -3.38786780e+01
+ -2.15833980e+01 -9.82071650e+00 -1.28407125e+00  1.37516884e+01
+ -3.14374059e+01  5.06120311e+00  2.92385346e+01  3.71167353e+01
+ -2.01148207e+01 -1.38491623e+01 -2.05981928e+01  1.62638873e+01
+  5.00176313e+00  2.06422289e+01  2.11473586e+01 -4.97049129e+00
+ -3.75577842e+01 -3.66919971e+01  1.43379330e+01 -3.43801845e+01
+ -1.18791281e+01  1.47627523e+01  3.17650046e+01  6.42427456e+00
+ -2.08394898e+01  1.59779720e+01  3.05053538e+01 -1.13560402e+00
+ -8.16879435e+00  3.19267103e+00  2.36529083e+01  5.87258115e+00
+ -9.17282063e+00  1.41859863e+01 -1.99814042e+01 -1.32992669e+01
+ -1.70667783e+01 -7.65311192e+00 -1.05406736e+01  2.45860965e+01
+  1.16626369e+01  2.47120240e+01 -3.71182327e+01 -3.20926315e+01
+ -3.70882697e+01  2.81550857e+01 -1.22232017e+01 -7.47498105e+00
+  3.27246579e+01  1.31579836e+01  1.91476498e+01 -1.35168433e+01
+  2.44718869e+01 -4.89113616e+00 -3.67770598e+01  1.46060744e-01
+  3.31040367e+00  1.07980022e+01  9.08826488e+00  2.21826180e+01
+  3.76540144e+00  1.86070604e+01 -3.00988496e+01 -1.48458854e+00
+  8.39618118e+00  1.40799802e+01 -4.40386494e+00  1.13687149e+01
+ -6.59622021e-01  1.22989468e+00  3.65088323e+01  2.20317213e+00
+  2.28571196e+01 -5.67828203e+00 -1.72279837e+00  1.06529566e+01
+  6.28961191e+00 -8.16305649e+00 -9.47809478e+00 -1.18535326e+01
+  1.65394486e+01 -7.49286930e+00 -2.20229284e+01 -8.96962175e+00
+ -3.08925521e+00 -3.00433028e+01 -2.53477854e+01 -6.14597307e+00
+ -5.31827614e+00  1.25392038e+01 -2.64513170e+01  2.28662488e+01
+  2.40831561e+00  1.63061637e+01  1.62715128e+01 -3.12955309e+01
+  1.14254291e+01  1.93440773e+01  3.59650316e+01  3.09035420e+01
+ -2.18443454e+00 -3.70434040e+01 -2.09449438e+01 -2.72439879e+01
+  1.96711022e+01  3.17959204e+00 -1.86515447e+01  1.93453394e+01
+ -7.61384278e+00  3.78782120e+00 -1.03827201e+01  2.35233400e+01
+ -2.58819961e+01 -1.56402671e+01  2.05873792e+01 -3.07710651e+01
+  3.74735394e+01  9.77477822e+00 -2.19979590e+01 -3.75926489e+01
+ -4.01966362e+00  3.58889575e+01  1.39874726e+01  1.87814807e+01
+  1.90704829e+01  6.60398872e+00 -3.80721131e+01  2.23690429e+01
+  1.46600231e+01 -2.72305595e+01  3.81024661e+01  2.80563496e+01
+  5.70773201e+00  1.21589511e+00  7.12885364e+00 -1.32307441e+01
+  3.17760928e+01 -3.20000442e+01  1.90376037e+01 -3.66880757e+01
+ -3.36330080e+01  1.11690379e+01 -1.48589553e+00 -3.75952007e+01
+  1.26402646e+01 -3.78387056e+01  3.14731642e+01  6.16662575e+00
+  1.84866186e+01  2.23144922e+01  2.81079169e+01 -3.67181015e+01
+ -3.75905584e+01  4.25533136e+00 -2.05914769e+01  3.46785137e+01
+  1.73934478e+01 -2.20723234e+00 -1.06843738e+00 -7.41144478e+00
+  1.61386596e+01 -2.67684593e+00  1.36373081e+01  2.06737866e+00
+  1.13048181e+01 -1.63521018e+01  1.46633797e+01  3.55761364e+01
+ -1.50269450e+01 -1.03057863e+01  1.94119707e+01  1.33622119e+01
+  9.43040354e+00  1.34901953e+01  1.40320637e+01  3.09639837e+01
+  2.61780235e+00  1.31808686e+01  1.32170675e+01 -1.20695906e+00
+ -1.75032736e+01 -1.69306169e-02 -1.88937888e+01 -2.60436793e+01
+  6.50112974e+00 -1.21092100e+01 -3.66362560e+01 -2.91258732e+01
+  4.12708662e+00 -4.73054375e+00 -3.69784859e+01  2.12856988e+01
+  1.41562675e+01  1.65454281e+01  2.35412368e-03 -2.78966838e+01
+ -3.69651414e+01  2.21206458e+01  2.21693934e+01 -8.37658272e+00
+ -1.04260518e+01 -2.56189297e-01  1.68621126e+01 -2.14570968e+01
+  2.02304797e+01 -1.41111528e+01 -2.26647693e+01  1.48153590e+01
+  9.54782846e+00  2.27581877e+00 -3.42929739e+01  1.94431326e+00
+  1.30090829e+01  2.05677221e+01 -9.37453298e+00  8.41602558e-01
+  2.91044803e+01 -9.18845321e+00  7.09387757e+00 -6.87746382e+00
+  2.46767089e+01  3.60972493e+01 -1.13811802e+01 -2.70852713e+01
+  3.51877786e+00 -1.25371439e+01  1.87290355e+01 -8.24515050e-01
+  2.01059027e+01 -1.66579893e+01  3.47907032e+01 -1.01261621e+01
+  1.96974793e+01 -3.74415152e+01  6.70256224e+00  1.90415665e+01
+  6.21376078e+00 -7.64993017e+00 -4.69673435e+00  2.23028307e+00
+ -6.33920712e-01 -4.10410646e+00  5.32683752e+00 -2.63186231e+01
+ -8.43385853e+00 -9.30391274e+00 -2.30986954e+01  8.61146527e+00
+  9.11183266e+00  1.01494419e+01 -7.99229539e+00 -1.83901183e+01
+  3.13878514e+01 -3.30147528e+01 -9.41038443e+00  2.80021503e+00
+ -1.78168730e+01 -1.67422854e+01 -6.92351959e+00 -7.55858840e+00
+  6.89354130e+00  2.32743181e+01 -2.81976747e+01  1.56809141e+01
+  1.97984824e+01 -1.29409369e+01 -2.63856270e+00  2.38591671e+01
+ -6.77636471e+00  1.94353297e+01 -1.11997471e+01 -1.07547234e+01
+ -1.51767740e+01  2.15817162e+01  3.16374062e+01  2.01378182e+01
+ -1.29145335e+01  2.24284906e+01  1.91453756e+01 -1.11592904e+01
+ -3.08700170e+01  1.59242823e+01  9.26027625e+00  2.02415012e+01
+ -3.90922977e+00  2.21851028e+01  3.67129602e+01 -1.71308150e+01
+  8.06294621e+00  1.22706386e+01 -2.27606604e+01  1.32374665e+01
+ -1.14143119e+01  5.63410818e+00 -5.16023562e+00 -3.74260331e+00
+ -6.89521863e+00 -1.80385482e+01  3.40185668e+01 -7.62389385e+00
+ -1.49624891e+01  2.59576354e+01 -1.36435261e+01 -7.15413077e+00
+ -1.16015662e+01  3.34539853e+01  1.10078509e+01 -2.79078147e+01
+  1.18244787e+01  1.30771528e+01  1.70681526e+01  3.63114327e+01
+ -1.65308792e+01  8.14289017e+00 -4.10710654e+00 -1.20893191e+01
+  1.84578248e+01 -1.53121120e+01 -2.94578032e+01  1.04393510e+01
+ -2.22685557e+01 -3.40636919e+01 -2.74935348e+01  4.60400850e+00
+  1.77606781e+01 -1.67304683e+01  1.00665985e+01  6.06584427e+00
+  1.45324595e+01 -1.99442254e+01 -7.13095146e+00 -8.29112560e+00
+  1.00864096e+01 -1.40525857e+01 -2.82714800e+01 -2.00743338e+01
+ -1.91438680e+01  9.36833850e+00 -5.02283618e+00 -8.44509374e+00
+ -1.69734462e+01  9.09227705e+00  1.11924281e+01  1.64068388e+01
+  1.28892383e+01 -1.59851771e+01 -2.20915258e+01 -8.98696206e+00
+ -2.29935367e+01 -5.04308537e+00 -5.43187206e+00 -2.20742489e+01
+  4.06174770e+00 -3.79196531e+00  1.03168967e-01  1.26306318e+01
+ -1.11654504e+01 -1.21435411e+01 -1.66845034e+01  1.38465660e+01
+  5.41492439e+00  1.20148988e+01  2.85838853e+01 -7.80396618e+00
+  2.03953610e+01 -1.85798391e+01 -1.78032662e+01 -8.06828254e+00
+ -1.39536842e+01  2.07546530e+01  1.80136319e+01 -2.21637701e+01
+ -1.14441379e+01 -4.77647507e+00 -5.45461710e+00  3.32943244e+01
+ -2.10351321e+01 -2.69916028e+01  1.33087284e+01  7.28850486e+00
+  1.65152432e+01 -1.81759503e+01  8.17232984e+00  2.30378369e+01
+ -1.37920171e+01  5.22029478e+00  1.62365654e+01  2.79835632e+01
+ -2.42879940e-01 -1.53812664e+01 -2.25659612e+01 -6.38994818e-01
+ -1.88340657e+01 -1.07736585e+00 -8.03849360e+00  3.41409636e+01
+  2.86055949e+01 -2.62355239e+01 -3.16933136e+01  1.35663107e+01]
+Function value: inf
+Execution time: 217ms
+n = 1000
+Solution: [ 1.5960564  -1.60119234 -1.56026928 -0.83631207 -1.26155619 -0.53588574
+ -1.74948055 -1.60063473 -2.60797089 -3.11016393 -0.82371796  1.0719829
+ -0.30400135 -2.10927397  0.68158287 -1.61934546 -1.49197172 -0.04825536
+  2.11457776 -3.20641988 -0.48075263 -0.71513788 -2.33189295  0.54315883
+  1.62285201 -2.03562257  1.05763252 -2.22781951 -1.16053836  1.74812271
+ -2.94095843 -3.20682582  1.57775507 -1.32041986  2.6425029   0.72508674
+ -2.33316542  2.73255184 -1.92793078  2.50381567  2.53856441  0.05960245
+  1.32692369  0.83218852 -0.43540009 -1.55073444  3.25020931  1.75157263
+  0.7163545   2.37478157  0.34634476 -2.96633596  0.51124489 -0.06899677
+ -0.78583084 -2.98038861 -3.22882594  3.13217291  1.39620838  0.42055946
+ -1.81702949 -2.01804912 -1.32290565 -0.47999077 -1.69588623 -3.16266857
+  2.83910651  2.44076511 -2.88053383 -0.37708127  0.73459383  0.62264463
+ -1.33989496  0.77902293 -1.56105342 -0.41262212 -2.00785225  1.2580986
+ -2.24352032 -2.17730838 -2.96691436  3.11301394 -1.2092413  -1.33913435
+ -1.29431878  0.37089536  1.96225611 -2.21165226  1.27317912  0.76096246
+  2.12454047 -1.81713875 -0.22588555  0.84882063  0.30479974  1.72770752
+ -2.74654781 -1.35862625  2.05801995 -1.21781513  1.19522975  1.55203937
+  3.26936172  1.95341465 -2.16987777  1.70498608 -0.62849278  2.07333968
+  0.1314483   0.55436479  1.87368989  0.83714423  0.55408492 -1.58358431
+  1.97148626  1.17317326  2.92377739  2.0545284  -2.16394852 -1.40331337
+  2.1115819  -1.35778907  0.49870869 -1.33695205  0.91604224  0.75966225
+  2.90941996  1.52857907 -0.57600923  1.67718399 -2.25259846 -2.32982596
+  0.27338349  0.6096557  -2.62856847  1.72328865  2.79476938  2.33906144
+ -0.82160551  3.1221009   2.2799321   1.9505337   1.03868438 -0.3796302
+ -1.58611294  0.71132884  1.16982426  1.82533367  0.59536778  0.19318889
+ -2.95722833 -0.20032777  1.09084041  2.77487275  0.51245818  2.75885747
+  1.86924605 -1.6953795  -0.36413975  1.29801349  1.94711175  2.15679941
+ -0.76846184  0.83530311 -1.56634844 -1.92730452 -0.19500163 -0.06242696
+ -2.0461844   2.85348616 -1.90131055  1.49894539  1.8646618   1.1108155
+ -2.24176564 -0.10926125  3.04388939  0.92621589  2.12107699 -2.33089068
+  1.15776087 -2.19805299 -2.78971573  2.88846087 -2.01762105 -1.67978638
+ -2.37120318  2.7525803   1.5698185   2.74652728 -0.48873855 -0.41527121
+  1.13287172  1.72805839  1.21926038  0.18578622 -0.88777742 -1.02601268
+  0.62545674  0.7593483  -2.14623086  0.42718086 -1.72326506  0.4284138
+ -2.5222357   2.97093227 -2.13483998 -2.59989261 -2.75940823  0.59950455
+  2.76013944 -0.44601377 -1.25669616  1.13217033  0.2650971   1.16007562
+  1.72712376  0.67340084 -1.45063574  2.34120875 -2.43842032  0.12244947
+ -1.55220713 -2.08327244  1.07817212 -1.92969485 -2.79398747 -1.43282046
+  1.57760455  1.2765641   1.80072908 -2.60220398  1.73440774 -1.58152219
+ -1.27917473  1.92378819 -0.76113251 -2.4904002   2.15447357  2.71837312
+ -0.55525947  1.34597982  1.85864596  1.76610712  0.53437385  1.01270549
+ -2.02421083 -1.38163276  0.7631494   0.34448181  0.3344454   2.10321867
+ -1.0363044   1.88385817  0.53151304  0.49979959 -1.22886655  1.26117349
+  0.576383   -0.73437029 -0.643091    1.81298041 -2.00575556 -1.79749204
+ -1.80021812 -2.16170207  2.9149564   2.03761117  0.1840941   2.22550887
+ -0.82517678 -1.96570384 -1.11104705 -0.3389306   1.22344974 -0.79729683
+ -2.30777307 -3.22007087 -1.75544044 -1.34471531  0.14892588  0.78137598
+ -0.24221671  2.21364917  0.58913984 -0.43939115 -1.00785543 -3.16387881
+ -3.06705069  0.95501448 -1.6326065  -0.18402623  0.81606293 -0.79681609
+  1.63626179 -1.21581828  2.43672743  0.63410836 -2.50072597 -0.32897209
+  0.94636017  0.38595713 -1.26555676 -1.77167169 -1.20827888  3.08289385
+ -1.66554707 -0.63773252 -2.77631183  1.53074255  2.23148601  0.33790669
+  2.58215739 -0.73521159 -1.26469289  1.77692199  2.58811064  3.15668196
+ -1.80638903  1.90271214 -1.85996305 -0.21053224 -1.44419221  2.68342619
+ -1.02064154  2.67635522 -1.21171511 -1.58170759 -3.18766037  3.18380053
+  0.82971195 -1.32385009 -0.41730241  1.44359525 -1.03896471  0.03941195
+ -3.12948096  2.5563339   2.66747886  0.8104515   2.50237734  0.80804777
+ -2.22183792  2.97055049  0.61209934 -1.27822932 -0.00540811 -0.75161329
+ -1.38280404 -2.34415107 -1.26799203 -0.07373476 -2.62700076 -0.83733618
+ -1.8744355   0.04124331  1.53606814 -0.18485771  2.1833836  -0.18683673
+  1.27190393  0.28242194  1.77110786  1.49807839  0.63410936 -2.19567923
+  0.74119831  1.23470378 -0.1324395  -0.53491208  2.10155974  1.31225005
+  0.96267185 -0.12366849 -0.3686455   1.81775848 -3.005994   -1.60040133
+ -1.42391997  1.31564475 -1.50635448  0.37779581  1.01393757  1.08475493
+  0.83044389 -2.889892    1.71323053  0.3704784   0.60008326 -0.97247709
+  2.30361207  2.54031386 -2.71872742 -1.5596994   1.98438977 -0.83082895
+  2.81549593 -3.25471964  1.27563821 -1.09251551  3.25098263 -0.98745459
+ -1.26598623 -0.83843913 -0.3186936   0.36577628  2.35248358  2.21273688
+ -1.61189254 -2.21785169 -1.30272222  1.06357939 -0.6203504  -2.68553798
+  2.71616332 -0.60124211 -1.29934447 -2.17294241  1.49707356 -1.04092515
+  0.94508369  1.98605977 -3.07034234 -0.67023276  0.4863408  -1.19682812
+ -0.92412578  0.37207662  0.98643203  0.01779804 -0.73415688 -0.07048596
+ -0.405797   -1.24150639 -1.88357688 -0.69564472  1.29184047 -2.3215417
+  0.00412171  2.08517823 -0.81783575  2.17788216  0.46215231  1.58899801
+ -1.01448813 -1.77365564  0.61643654 -1.39649108 -0.76306864 -1.10360522
+  1.23138455 -0.88365557  0.62681447 -1.06318116 -0.77880154  3.22941299
+ -0.09040156  0.06351943  1.90590616  1.40243429 -2.63699167 -0.67474019
+  0.97418059  1.22037966 -1.55431687 -3.16295015  1.19471579 -0.50783359
+ -2.52577659 -1.23604172  1.76124036 -1.51540246 -0.29410609  0.89597936
+  0.46139033 -1.81428665 -1.99238577 -0.81990578 -2.55443665  0.94631774
+  1.13592363  1.46439809 -1.81210464 -3.21407754  0.65615774 -1.90194793
+ -2.9250043   1.39114114 -2.19548051  1.23765964 -0.1151999  -0.19066048
+ -2.35294194 -2.66749834  3.1239024  -0.68782384 -0.48847921  2.75989847
+ -1.9647534   2.15121742 -1.21744204  1.9747986  -0.11800333  2.97233815
+  0.72536929  0.26840273  0.12402762  2.96761437  3.19687901 -0.65653628
+  0.61899353 -1.72743812 -0.81594791 -1.04391844  0.91120862  0.33607453
+ -0.42564813  0.65046701  0.40195858  0.42941856  0.39004039 -2.0947459
+ -1.14219867  0.22941904  1.27739235 -0.75379046 -2.63242789  1.11034744
+ -2.00874194 -1.2756788  -1.92942592  0.3088045   0.79967095  0.40077706
+  1.79365871 -0.40430323  1.72778496 -0.46469322  0.02596665 -0.18166261
+ -0.1986449  -1.79660906 -2.15201831  0.87261468  1.87596755 -1.97621004
+  3.17395144  2.07017388  2.2944914  -2.18867173 -2.23795254 -2.41543219
+  2.20939511 -0.15757062 -1.83231218  1.52858189  1.14054593  2.28590857
+ -1.52393172 -0.25041249  0.20089403 -1.74231493  0.14916455 -0.47568583
+ -1.64481617 -0.6633874  -3.11739366  0.59838618 -0.95935074  0.23396012
+  1.39574618 -0.78852324 -2.11704045 -0.66135483  0.66420132 -2.03113772
+ -0.32083357  1.82912348 -2.79995707  0.83195152  1.66124141  2.11885121
+ -1.77897119  2.55537596 -2.59844111  2.52618934 -3.07283511 -0.33041329
+ -1.51189198  1.85006381 -1.95489667  1.38373591  0.74194608 -0.69514872
+ -2.53538077 -0.08805161  2.86425596 -2.106432   -1.79972188  0.15793585
+ -2.14151337  1.65334034  1.41308993 -0.37493108 -1.32024404  1.45219605
+ -2.12287669  3.18393227 -0.82616916  2.19035876  0.53313083 -1.08718997
+  1.44212414  1.90312983 -1.76277915  0.11921407 -1.00206605 -1.43127349
+ -1.2940945   3.09059417 -1.4776635   1.16245742  1.5518803   1.43247298
+ -0.07626416 -1.14045598  0.63819538  2.91467237 -1.47368293 -2.07671201
+ -2.44513717 -1.20686572  1.7828534   1.10750338 -2.17277739  0.80750699
+  0.9622255  -0.54268104 -1.58368209  1.25835955  2.19551891 -2.01071331
+  1.68282675 -3.24319262 -0.71510078 -1.84084405  0.46460441 -1.5318007
+ -2.58007389 -0.23663935 -2.54929921  0.89689887  1.39825032 -1.59542405
+  2.09378246 -2.06318025  0.77972064  2.04188176  2.22664841 -3.20594334
+ -1.3007787   2.0449819  -1.71927498 -3.2705704   2.91098445  3.0930939
+  1.95435409  0.73735673  2.1604279  -1.31210211  0.83565639  1.81283806
+  2.18031501  1.44475531 -1.96843187 -1.7630333  -0.70787371 -2.33842107
+  1.97685119 -1.47939709 -2.50528457 -2.15954138  1.29336818 -1.62067791
+ -1.65454508  0.2064854  -2.14728907 -1.30640598  3.22920942 -1.70495236
+ -0.36871595  1.07380813 -0.23759326 -2.24129163 -0.4621479   1.47700457
+ -1.09206514 -0.83588257  1.03960843  1.87388895 -0.66126002  3.27073602
+ -2.13051787  1.06336504 -0.67691613 -1.18216403  1.8304777  -1.86778757
+ -2.94756677 -0.4030169   3.17608146  0.75668374 -1.99999148 -2.01462129
+ -0.46189149 -1.48445011  0.68935474 -1.82385    -0.89519659  1.26570341
+ -0.06910811  2.74582829 -2.27734723  0.36025897  1.35205308  2.62613656
+  2.99862257 -2.22930612  2.46959732  2.16387138  2.01648936 -2.71118901
+  2.22411816 -0.6502959  -1.747504   -3.10850466 -2.86695497 -0.9867167
+ -2.19287257 -2.77006487 -2.2034087  -0.61106521 -1.29792915  2.08733759
+ -0.72363735  1.80340915 -2.03045731  1.61754187  2.74225941 -0.76218099
+  0.36649966 -0.02962213  2.23217664 -1.33811313 -3.03215071  1.62298223
+  2.54649292  2.20466302 -1.26221122 -1.67419207  0.9502535  -0.25346404
+ -1.64192926  0.12784027  1.8929431  -0.44934841 -1.01029586  3.2067624
+  1.96581988 -0.96443592  2.81765943  1.65564304  1.87634625 -2.71923637
+  2.1304565   3.24761691 -0.53428788 -0.35217797 -1.51972309  1.9705484
+ -1.12150415  2.19026761  1.04723363 -2.92905482 -1.69972636  1.65866675
+  2.11469328  0.90555291  1.63930794 -2.03296723  1.39775442 -1.11805012
+ -3.1596924   1.06782262 -0.62491082 -2.19032495  3.18232833  1.39325146
+  0.97589576 -2.47253992  0.88668884 -1.31847264 -1.43729259 -1.58487045
+  2.06327668 -1.68956435 -1.52931139  2.1812628  -1.62531632  0.84947095
+  0.10048509  0.32577833 -2.35302024 -1.9974481  -1.42885455  1.84395603
+  0.74735264  3.0227645   2.24113431  0.51759599 -1.63685948  2.68326853
+ -0.46247294 -1.64188525 -3.13448976  1.53302283 -0.71089732 -2.02211503
+  2.17500544 -2.14572406 -0.22754839  0.17860956  1.64768075  3.07198379
+ -1.55496109  1.49969934  0.27998311 -1.18047989 -1.62315867  3.2539959
+ -2.44604687 -1.38243096  3.00484215  2.15960776  2.60680844  2.58280245
+ -0.37845704 -0.4047618  -2.03947851  2.11884154  2.26274085  0.15797141
+  1.06191136  0.06345232  0.9070011   0.12651122 -2.52032495 -0.43525753
+  2.20502176 -0.0410449   1.80982671  3.10644408 -2.08940658 -1.45763739
+  1.09632234 -0.13585894  2.11788528 -2.63346469 -2.02384455 -1.77842745
+ -0.8700822   1.43108657 -1.55563623  1.40960465  1.83016935 -0.06992695
+ -0.14021536 -2.75060957 -1.99034586 -0.16816664  1.91705989 -0.76290478
+ -2.84414883  1.76165053  0.30730229 -0.81511313 -0.14664986  0.92551784
+ -0.14108931  0.88810837  1.89854143 -2.96064965  0.39522315 -0.13644568
+ -1.99889056 -0.87523027  2.00633409 -0.98776582  0.66514444  0.14400777
+  1.06979745  2.02699689 -2.16561405  1.18061156  2.15361417 -1.06188603
+ -1.13309189 -1.78709643  3.11168255 -2.98291967 -0.24055824  1.28606551
+  0.81909761 -0.25964857 -2.7219374   0.32041378 -0.72653804  1.24751614
+  1.70275009 -1.12571678 -2.11321353 -1.83945373  0.66235281 -0.7581646
+  1.55234472 -1.42272195  2.08893499 -0.25818141 -0.36647468  2.98953474
+  1.17770364  0.13841439  1.39179992  0.39835316  1.55115927  1.95996783
+  2.21974107  3.24093707 -1.91084237  1.35486044  1.53061734 -0.05853546
+ -0.93246365 -1.04600272  2.10295282  0.97775023  0.47137548 -0.07417744
+  1.18700646 -1.00342594  1.292619    1.66263726  2.66701501  3.10182645
+  0.32099896  0.90870409  1.02883213 -0.79842371  0.41570189  1.78526695
+ -2.31717385 -1.4888901   0.51394944  1.69471953  0.70904449 -0.69228269
+  1.30606732 -1.06397512 -1.78360197 -1.26358414  1.49067043 -0.82033107
+ -1.60534839 -0.20452878  1.09839123 -2.7709504   1.03335057 -1.26150576
+ -1.30544832 -1.79191914  1.15645034  3.11072073 -2.45907187  1.33050794
+ -0.62881271  0.42396625 -0.28664044  0.58217877 -1.86630537  3.24986365
+  1.17208639 -3.26012684  0.05837864  1.85222468  1.69447678 -1.3279437
+ -2.23978753  0.7620192  -1.57555275  2.57265039]
+Function value: 4.513919590868475e+139
+Execution time: 349ms
 </pre>
 </div>
 </div>
@@ -8510,16 +8705,16 @@ Shrinking: Se reduce el tamaño del simplex en general.</li>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>El valor mínimo de la función Brent en el punto (0, 0) con 10 iteraciones es: 201.10000000007813
 Las coordenadas del mínimo global son: [0.0025 0.0025]
-Tiempo de ejecución: 0.0010020732879638672 segundos
+Tiempo de ejecución: 0.0009984970092773438 segundos
 El valor mínimo de la función Brent en el punto (0, 0) con 100 iteraciones es: 1.3838965267367376e-87
 Las coordenadas del mínimo global son: [-10. -10.]
-Tiempo de ejecución: 0.0019974708557128906 segundos
+Tiempo de ejecución: 0.003005504608154297 segundos
 El valor mínimo de la función Brent en el punto (0, 0) con 500 iteraciones es: 1.3838965267367376e-87
 Las coordenadas del mínimo global son: [-10. -10.]
-Tiempo de ejecución: 0.0030002593994140625 segundos
+Tiempo de ejecución: 0.004000425338745117 segundos
 El valor mínimo de la función Brent en el punto (0, 0) con 1000 iteraciones es: 1.3838965267367376e-87
 Las coordenadas del mínimo global son: [-10. -10.]
-Tiempo de ejecución: 0.003009319305419922 segundos
+Tiempo de ejecución: 0.0029985904693603516 segundos
 </pre>
 </div>
 </div>
@@ -8625,7 +8820,7 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>$$
--1 \leq x \leq 4
+-1 \leq x_i \leq 4
 $$</p>
 </div>
 </div>
