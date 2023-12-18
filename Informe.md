@@ -109,7 +109,7 @@ Número de iteraciones en el orden de las miles, no terminó después de 10 minu
 #### Continua, Diferenciable, No Separable, No Escalable, Unimodal
 
 $$
-f(x)= (x_1+10)^2-(x_2+10)^2+e^{-x_1^2-x_2^2}
+f(x)= (x_1+10)^2+(x_2+10)^2+e^{-x_1^2-x_2^2}
 $$
 ###### sujeto a:
 $$
