@@ -2,7 +2,7 @@ import pandas as pd
 from openpyxl import load_workbook
 import time
 from scipy.optimize import minimize
-
+import os
 
 
 
@@ -23,7 +23,7 @@ def optimizeFun(f,x0,bounds,method_name,n,exercise):
         end_time = time.perf_counter()
         execution_time_ms = int((end_time - start_time) * 1000)
         data =get_data(res, execution_time_ms)
-        toLatex(data,method_name,n,exercise)
+        #toLatex(data,method_name,n,exercise)
         toExcel(data,method_name,n,exercise)
         return data,method_name
         #options={'gtol': 1e-8}
@@ -32,20 +32,37 @@ def optimizeFun(f,x0,bounds,method_name,n,exercise):
         
 def toLatex(dataframe,method_name,n,exercise):
        
-        # Abre el archivo .tex en modo escritura
-        with open(F'Ejercicio{exercise}conMetodo{method_name}con_n{n}output.tex', 'w') as f:
-                # Itera sobre cada DataFrame
-                        #Escribe el Numero de D
-                        value='{Con D = '+f'{n}'+'}'
-                        f.write(f'\section{value}')
-                        # Exporta el DataFrame a LaTeX
-                        latex = dataframe.to_latex()
-                        # Escribe el LaTeX en el archivo .tex
-                        f.write(latex)
+       # Construye la ruta completa del archivo
+        ruta = os.path.join('Ejercicio' + exercise, 'conMetodo' + method_name, 'con_n' + str(n) + 'output.tex')
+
+        # Verifica si la ruta existe
+        if not os.path.exists(os.path.dirname(ruta)):
+         # Si la ruta no existe, la crea
+          os.makedirs(os.path.dirname(ruta), exist_ok=True)
+
+        # Abre el archivo en la ruta
+        with open(ruta, 'w') as f:
+        # Itera sobre cada DataFrame
+        # Escribe el Numero de D
+         value='{Con D = '+f'{n}'+'}'
+         f.write(f'\section{value}')
+         # Exporta el DataFrame a LaTeX
+         latex = dataframe.to_latex()
+         # Escribe el LaTeX en el archivo .tex
+         f.write(latex)
 
 def toExcel(dataframe,method_name,n,exercise):
         
-        dataframe.to_excel(F'Ejercicio{exercise}conMetodo{method_name}con_n{n}output.xlsx', index=False)
+        # Construye la ruta completa del archivo
+        ruta = os.path.join('Ejercicio' + exercise, 'conMetodo' + method_name, 'con_n' + str(n) + 'output.xlsx')
+
+        # Verifica si la ruta existe
+        if not os.path.exists(os.path.dirname(ruta)):
+         # Si la ruta no existe, la crea
+         os.makedirs(os.path.dirname(ruta), exist_ok=True)
+
+        # Guarda el DataFrame en el archivo
+        dataframe.to_excel(ruta, index=False)
         
         
         
